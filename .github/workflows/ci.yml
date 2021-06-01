@@ -1,0 +1,15 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Test if htaccess files in current directory does wanted redirects
+      uses: madewithlove/htaccess-cli-github-action@main
+      with:
+        url: http://localhost
+        expected-url: http://localhost/foo
