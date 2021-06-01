@@ -1,0 +1,16 @@
+
+RewriteEngine On
+
+#Redirect to SSL version
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI}
+
+#Redirect to non www version
+RewriteCond %{HTTP_HOST} ^www.(.*)$ [NC]
+RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+#Default page
+DirectoryIndex index.html
+
+#Do not allow pages to be framed
+Header set X-Frame-Options SAMEORIGIN
